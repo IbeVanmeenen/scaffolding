@@ -1,0 +1,76 @@
+/* ==========================================================================
+   Scaffolding - Config
+   ========================================================================== */
+
+/* Helper
+   ========================================================================== */
+@mixin _assert-ascending($map, $map-name) {
+    $prev-key: null;
+    $prev-num: null;
+
+    @each $key, $num in $map {
+        @if $prev-num == null {
+            // Do nothing
+        } @else if not comparable($prev-num, $num) {
+            @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+        } @else if $prev-num >= $num {
+            @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+        }
+
+        $prev-key: $key;
+        $prev-num: $num;
+    }
+}
+
+
+
+/* Rem Calc
+   ========================================================================== */
+$sc-rem-base: 16px;
+
+
+
+/* Breakpoints
+   ========================================================================== */
+$sc-grid-breakpoints: (
+    xs: 0,
+    sm: 550px,
+    md: 850px,
+    lg: 1000px,
+    xl: 1200px
+) !default;
+
+@include _assert-ascending($sc-grid-breakpoints, "$sc-grid-breakpoints");
+
+
+
+/* Container
+   ========================================================================== */
+$sc-container-max-widths: (
+    sm: 650px,
+    md: 750px,
+    lg: 950px,
+    xl: 1150px
+) !default;
+
+@include _assert-ascending($sc-container-max-widths, "$sc-container-max-widths");
+
+
+
+/* Columns
+   ========================================================================== */
+$sc-grid-columns-count: 12 !default;
+
+
+
+/* Gutter
+   ========================================================================== */
+$sc-grid-gutter-width-base: 1.875rem !default;
+
+$sc-grid-gutter-widths: (
+    xs: $sc-grid-gutter-width-base,
+    sm: $sc-grid-gutter-width-base,
+    md: $sc-grid-gutter-width-base,
+    lg: $sc-grid-gutter-width-base,
+    xl: $sc-grid-gutter-width-base
+) !default;

@@ -1,0 +1,24 @@
+@import "scaffolding/scss/scaffolding";
+
+
+body {
+    padding: 2em 0 6em;
+
+    background: lighten(#f3e5f5, 3%);
+
+    color: #333;
+    font-size: 100%;
+    text-shadow: 0 1px 0 #fff;
+    font-family: helvetica, arial, sans-serif;
+}
+
+.col-demo-content {
+    display: block;
+    margin: ($sc-grid-gutter-width-base / 2) 0;
+    padding: 1em;
+
+    background: #f3e5f5;
+    border: 2px solid darken(#f3e5f5, 20%);
+
+    text-align: center;
+}
